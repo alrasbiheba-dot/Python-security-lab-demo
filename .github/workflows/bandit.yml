@@ -21,10 +21,10 @@ jobs:
       - name: Install Bandit
         run: pip install bandit
 
-      - name: Run Bandit scan and upload results
-        run: bandit -r . -f sarif -o results.sarif
+      - name: Run Bandit and produce SARIF report
+        run: bandit -r . -f sarif -o bandit-results.sarif
 
-      - name: Upload SARIF file to GitHub Security tab
+      - name: Upload SARIF results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: results.sarif
+          sarif_file: bandit-results.sarif
